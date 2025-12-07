@@ -59,11 +59,11 @@ export default function InstallPrompt() {
 
             {/* Prompt Modal */}
             <div className="fixed bottom-0 left-0 right-0 z-50 p-4 animate-slide-up">
-                <div className="glass rounded-2xl p-6 max-w-md mx-auto border border-emerald-500/20">
+                <div className="bg-slate-900 rounded-2xl p-6 max-w-md mx-auto border border-slate-700 shadow-2xl">
                     {/* Close button */}
                     <button
                         onClick={handleDismiss}
-                        className="absolute top-4 right-4 p-2 rounded-full bg-slate-800/50 hover:bg-slate-700/50 transition-colors"
+                        className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 transition-colors"
                         aria-label="Tutup"
                     >
                         <X size={18} className="text-slate-400" />
@@ -89,7 +89,7 @@ export default function InstallPrompt() {
                     {isIOS ? (
                         // iOS Instructions
                         <div className="space-y-4">
-                            <div className="bg-slate-800/50 rounded-xl p-4">
+                            <div className="bg-slate-800 rounded-xl p-4">
                                 <h3 className="text-sm font-semibold text-emerald-400 mb-3">
                                     Cara Install di iOS:
                                 </h3>
