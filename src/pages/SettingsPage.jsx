@@ -23,7 +23,7 @@ export default function SettingsPage() {
     const currentMethod = CALCULATION_METHODS.find(m => m.id === settings.prayerMethod) || CALCULATION_METHODS[0]
 
     return (
-        <div className="space-y-6 animate-fade-in">
+        <div className="space-y-4 animate-fade-in pt-2">
             {/* Header */}
             <div className="flex items-center gap-3">
                 <Link

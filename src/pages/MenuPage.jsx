@@ -17,7 +17,7 @@ export default function MenuPage() {
     }
 
     return (
-        <div className="space-y-6 animate-fade-in">
+        <div className="space-y-4 animate-fade-in pt-2">
             {/* Header */}
             <div>
                 <h1 className="text-2xl font-bold text-white">Menu Ramadhan</h1>
@@ -31,8 +31,8 @@ export default function MenuPage() {
                 <button
                     onClick={() => setActiveTab('sahur')}
                     className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all ${activeTab === 'sahur'
-                            ? 'bg-gradient-to-r from-emerald-600 to-emerald-700 text-white'
-                            : 'bg-slate-800/50 text-slate-400 hover:bg-slate-700/50'
+                        ? 'bg-gradient-to-r from-emerald-600 to-emerald-700 text-white'
+                        : 'bg-slate-800/50 text-slate-400 hover:bg-slate-700/50'
                         }`}
                 >
                     <Sunrise size={18} />
@@ -41,8 +41,8 @@ export default function MenuPage() {
                 <button
                     onClick={() => setActiveTab('bukaPuasa')}
                     className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all ${activeTab === 'bukaPuasa'
-                            ? 'bg-gradient-to-r from-gold-500 to-orange-500 text-white'
-                            : 'bg-slate-800/50 text-slate-400 hover:bg-slate-700/50'
+                        ? 'bg-gradient-to-r from-gold-500 to-orange-500 text-white'
+                        : 'bg-slate-800/50 text-slate-400 hover:bg-slate-700/50'
                         }`}
                 >
                     <Sunset size={18} />

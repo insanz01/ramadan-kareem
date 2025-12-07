@@ -15,7 +15,7 @@ export default function KutipanPage() {
     })
 
     return (
-        <div className="space-y-6 animate-fade-in">
+        <div className="space-y-4 animate-fade-in pt-2">
             {/* Header */}
             <div>
                 <h1 className="text-2xl font-bold text-white">Kutipan Islami</h1>
@@ -58,8 +58,8 @@ export default function KutipanPage() {
                             key={id}
                             onClick={() => setFilter(id)}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${filter === id
-                                    ? 'bg-emerald-600 text-white'
-                                    : 'bg-slate-800/50 text-slate-400 hover:bg-slate-700/50'
+                                ? 'bg-emerald-600 text-white'
+                                : 'bg-slate-800/50 text-slate-400 hover:bg-slate-700/50'
                                 }`}
                         >
                             {label}
@@ -83,14 +83,14 @@ export default function KutipanPage() {
                     >
                         <div className="flex items-start gap-3 mb-3">
                             <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${quote.type === 'quran'
-                                    ? 'bg-emerald-600/20 text-emerald-400'
-                                    : 'bg-gold-500/20 text-gold-400'
+                                ? 'bg-emerald-600/20 text-emerald-400'
+                                : 'bg-gold-500/20 text-gold-400'
                                 }`}>
                                 <BookOpen size={16} />
                             </div>
                             <span className={`text-xs font-medium px-2 py-1 rounded ${quote.type === 'quran'
-                                    ? 'bg-emerald-600/20 text-emerald-400'
-                                    : 'bg-gold-500/20 text-gold-400'
+                                ? 'bg-emerald-600/20 text-emerald-400'
+                                : 'bg-gold-500/20 text-gold-400'
                                 }`}>
                                 {quote.type === 'quran' ? 'Al-Quran' : 'Hadits'}
                             </span>

@@ -49,7 +49,7 @@ export default function KiblatPage() {
     }
 
     return (
-        <div className="space-y-6 animate-fade-in">
+        <div className="space-y-4 animate-fade-in pt-2">
             {/* Header */}
             <div>
                 <h1 className="text-2xl font-bold text-white">Arah Kiblat</h1>

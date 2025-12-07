@@ -21,7 +21,7 @@ export default function JadwalPage() {
     const setMethod = (id) => updateSetting('prayerMethod', id)
 
     return (
-        <div className="space-y-6 animate-fade-in">
+        <div className="space-y-4 animate-fade-in pt-2">
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
