@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Moon, Sun, MapPin, RefreshCw, Download } from 'lucide-react'
+import { Moon, Sun, MapPin, RefreshCw, Download, Settings } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import { useLocation } from '../context/LocationContext'
 import { usePWAInstall } from '../hooks/usePWAInstall'
@@ -70,7 +71,7 @@ export default function Header() {
                         {/* Theme Toggle */}
                         <button
                             onClick={toggleDarkMode}
-                            className="p-2 rounded-full bg-slate-800/50 hover:bg-slate-700/50 transition-colors"
+                            className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 transition-colors"
                             aria-label="Toggle dark mode"
                         >
                             {darkMode ? (
@@ -79,6 +80,15 @@ export default function Header() {
                                 <Moon size={18} className="text-slate-300" />
                             )}
                         </button>
+
+                        {/* Settings */}
+                        <Link
+                            to="/settings"
+                            className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 transition-colors"
+                            aria-label="Pengaturan"
+                        >
+                            <Settings size={18} className="text-slate-300" />
+                        </Link>
                     </div>
                 </div>
             </div>

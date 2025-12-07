@@ -13,7 +13,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'logo-192.png', 'logo-512.png'],
+      includeAssets: ['favicon.ico', 'logo-192.png', 'logo-512.png', 'sounds/*.mp3'],
       manifest: {
         name: 'Marhaban Ramadhan',
         short_name: 'Ramadhan',
@@ -44,7 +44,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,mp3}'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/api\.aladhan\.com\/.*/i,
@@ -61,6 +61,8 @@ export default defineConfig({
             },
           },
         ],
+        // Import custom service worker code
+        importScripts: ['sw-custom.js'],
       },
     }),
   ],

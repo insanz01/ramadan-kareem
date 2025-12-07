@@ -7,6 +7,7 @@ import JadwalPage from './pages/JadwalPage'
 import KiblatPage from './pages/KiblatPage'
 import MenuPage from './pages/MenuPage'
 import KutipanPage from './pages/KutipanPage'
+import SettingsPage from './pages/SettingsPage'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/kiblat" element={<KiblatPage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/kutipan" element={<KutipanPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </main>
 
@@ -30,3 +32,4 @@ export default function App() {
     </div>
   )
 }
+

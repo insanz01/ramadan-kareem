@@ -5,15 +5,19 @@ import './index.css'
 import App from './App.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 import { LocationProvider } from './context/LocationContext.jsx'
+import { NotificationProvider } from './context/NotificationContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
         <LocationProvider>
-          <App />
+          <NotificationProvider>
+            <App />
+          </NotificationProvider>
         </LocationProvider>
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
 )
+
