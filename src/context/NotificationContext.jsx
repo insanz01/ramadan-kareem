@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, useRef, useCallback } f
 import { useNotification } from '../hooks/useNotification'
 import { usePrayerTimes, getNextPrayer } from '../hooks/usePrayerTimes'
 import { useLocation } from './LocationContext'
+import { useSettings } from './SettingsContext'
 
 const NotificationContext = createContext()
 
@@ -18,7 +19,8 @@ const PRAYER_NAMES = {
 
 export function NotificationProvider({ children }) {
     const { location } = useLocation()
-    const { prayerTimes } = usePrayerTimes(location?.latitude, location?.longitude)
+    const { settings: appSettings } = useSettings()
+    const { prayerTimes } = usePrayerTimes(location?.latitude, location?.longitude, appSettings.prayerMethod)
     const { isSupported, permission, requestPermission, showNotification } = useNotification()
 
     const [settings, setSettings] = useState(() => {

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { usePrayerTimes, getNextPrayer } from '../hooks/usePrayerTimes'
 import { useLocation } from '../context/LocationContext'
+import { useSettings } from '../context/SettingsContext'
 import { Clock, Sunrise, Sun, Sunset, Moon, CloudMoon } from 'lucide-react'
 
 const prayerIcons = {
@@ -15,9 +16,11 @@ const prayerIcons = {
 
 export default function PrayerTimesCard({ compact = false }) {
     const { location } = useLocation()
+    const { settings } = useSettings()
     const { prayerTimes, loading, error } = usePrayerTimes(
         location?.latitude,
-        location?.longitude
+        location?.longitude,
+        settings.prayerMethod
     )
     const [nextPrayer, setNextPrayer] = useState(null)
     const [countdown, setCountdown] = useState({ hours: 0, minutes: 0, seconds: 0 })
@@ -144,8 +147,8 @@ export default function PrayerTimesCard({ compact = false }) {
                         <div
                             key={prayer.name}
                             className={`flex items-center justify-between p-3 rounded-xl transition-all duration-300 ${isNext
-                                    ? 'prayer-active'
-                                    : 'bg-slate-800/30 hover:bg-slate-800/50'
+                                ? 'prayer-active'
+                                : 'bg-slate-800/30 hover:bg-slate-800/50'
                                 }`}
                         >
                             <div className="flex items-center gap-3">

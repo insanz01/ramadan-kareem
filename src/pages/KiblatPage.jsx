@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation } from '../context/LocationContext'
 import { useQibla } from '../hooks/useQibla'
-import { Compass, Navigation, MapPin, AlertCircle, RefreshCw, Smartphone } from 'lucide-react'
+import { Compass, MapPin, AlertCircle, RefreshCw, Smartphone } from 'lucide-react'
 
 export default function KiblatPage() {
     const { location, loading: locationLoading, error: locationError, requestLocation } = useLocation()
@@ -93,19 +93,16 @@ export default function KiblatPage() {
                             />
                         ))}
 
-                        {/* Qibla Direction Arrow */}
+                        {/* Qibla Direction - Kaaba */}
                         <div
                             className="absolute w-full h-full compass-needle"
                             style={{
                                 transform: `rotate(${qiblaDirection || 0}deg)`
                             }}
                         >
-                            <div className="absolute top-4 left-1/2 -translate-x-1/2 text-emerald-400">
-                                <Navigation size={24} className="fill-emerald-400 drop-shadow-lg" />
-                            </div>
-                            {/* Kaaba Icon at the tip */}
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2">
-                                <span className="text-lg">🕋</span>
+                            {/* Kaaba Icon pointing to Qibla */}
+                            <div className="absolute top-2 left-1/2 -translate-x-1/2">
+                                <span className="text-2xl drop-shadow-lg">🕋</span>
                             </div>
                         </div>
                     </div>

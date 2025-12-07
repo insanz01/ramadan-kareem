@@ -29,35 +29,35 @@ export function MenuDetail({ menu, onClose }) {
     if (!menu) return null
 
     return (
-        <div className="fixed inset-0 z-50 flex items-end justify-center p-4 bg-black/60 animate-fade-in" onClick={onClose}>
-            <div
-                className="w-full max-w-lg max-h-[85vh] overflow-hidden glass rounded-t-3xl animate-slide-up"
-                onClick={e => e.stopPropagation()}
-            >
-                {/* Header */}
-                <div className="sticky top-0 z-10 glass border-b border-white/10 px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <span className="text-3xl">{menu.image}</span>
-                            <div>
-                                <h2 className="text-lg font-bold text-white">{menu.name}</h2>
-                                <div className="flex items-center gap-2 text-sm text-slate-400">
-                                    <Clock size={14} />
-                                    <span>{menu.cookTime}</span>
-                                </div>
+        <div
+            className="fixed inset-0 bg-slate-900 animate-fade-in flex flex-col"
+            style={{ zIndex: 9999 }}
+        >
+            {/* Header - Fixed at top */}
+            <div className="flex-shrink-0 bg-slate-800 border-b border-slate-700 px-4 py-4 safe-area-top">
+                <div className="flex items-center justify-between max-w-2xl mx-auto">
+                    <div className="flex items-center gap-3">
+                        <span className="text-3xl">{menu.image}</span>
+                        <div>
+                            <h2 className="text-lg font-bold text-white">{menu.name}</h2>
+                            <div className="flex items-center gap-2 text-sm text-slate-400">
+                                <Clock size={14} />
+                                <span>{menu.cookTime}</span>
                             </div>
                         </div>
-                        <button
-                            onClick={onClose}
-                            className="p-2 rounded-full bg-slate-800/50 hover:bg-slate-700/50 transition-colors"
-                        >
-                            <X size={20} className="text-slate-400" />
-                        </button>
                     </div>
+                    <button
+                        onClick={onClose}
+                        className="p-2 rounded-full bg-slate-700 hover:bg-slate-600 transition-colors"
+                    >
+                        <X size={20} className="text-slate-300" />
+                    </button>
                 </div>
+            </div>
 
-                {/* Content */}
-                <div className="overflow-y-auto max-h-[calc(85vh-80px)] px-6 py-4">
+            {/* Content - Scrollable */}
+            <div className="flex-1 overflow-y-auto px-4 pt-4 pb-8 bg-slate-900">
+                <div className="max-w-2xl mx-auto">
                     {/* Ingredients */}
                     <div className="mb-6">
                         <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-3">
@@ -92,11 +92,11 @@ export function MenuDetail({ menu, onClose }) {
 
                     {/* Tips */}
                     {menu.tips && (
-                        <div className="p-4 rounded-xl bg-gold-500/10 border border-gold-500/20">
+                        <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
                             <div className="flex items-start gap-3">
-                                <ChefHat size={18} className="text-gold-400 flex-shrink-0 mt-0.5" />
+                                <ChefHat size={18} className="text-amber-400 flex-shrink-0 mt-0.5" />
                                 <div>
-                                    <h4 className="text-sm font-medium text-gold-400 mb-1">Tips</h4>
+                                    <h4 className="text-sm font-medium text-amber-400 mb-1">Tips</h4>
                                     <p className="text-sm text-slate-300">{menu.tips}</p>
                                 </div>
                             </div>

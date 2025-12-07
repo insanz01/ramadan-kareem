@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Calendar, Settings, Info } from 'lucide-react'
 import PrayerTimesCard from '../components/PrayerTimesCard'
 import { useLocation } from '../context/LocationContext'
+import { useSettings } from '../context/SettingsContext'
 
 const CALCULATION_METHODS = [
     { id: 20, name: 'Kemenag Indonesia', description: 'Kementerian Agama RI' },
@@ -12,9 +13,12 @@ const CALCULATION_METHODS = [
 ]
 
 export default function JadwalPage() {
-    const [method, setMethod] = useState(20)
+    const { settings, updateSetting } = useSettings()
     const [showSettings, setShowSettings] = useState(false)
     const { location } = useLocation()
+
+    const method = settings.prayerMethod
+    const setMethod = (id) => updateSetting('prayerMethod', id)
 
     return (
         <div className="space-y-6 animate-fade-in">
@@ -45,8 +49,8 @@ export default function JadwalPage() {
                                 key={m.id}
                                 onClick={() => setMethod(m.id)}
                                 className={`w-full text-left p-3 rounded-lg transition-colors ${method === m.id
-                                        ? 'bg-emerald-600/20 border border-emerald-500/30'
-                                        : 'bg-slate-800/30 hover:bg-slate-800/50'
+                                    ? 'bg-emerald-600/20 border border-emerald-500/30'
+                                    : 'bg-slate-800/30 hover:bg-slate-800/50'
                                     }`}
                             >
                                 <div className="font-medium text-white">{m.name}</div>

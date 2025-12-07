@@ -1,12 +1,26 @@
-import { ArrowLeft, Bell, MapPin, Palette, Info, ExternalLink } from 'lucide-react'
+import { ArrowLeft, Bell, MapPin, Palette, Info, ExternalLink, Clock, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import NotificationSettings from '../components/NotificationSettings'
 import { useLocation } from '../context/LocationContext'
 import { useTheme } from '../context/ThemeContext'
+import { useSettings } from '../context/SettingsContext'
+
+const CALCULATION_METHODS = [
+    { id: 20, name: 'Kemenag Indonesia', description: 'Kementerian Agama RI' },
+    { id: 4, name: 'Umm Al-Qura', description: 'Saudi Arabia' },
+    { id: 2, name: 'ISNA', description: 'Islamic Society of North America' },
+    { id: 3, name: 'MWL', description: 'Muslim World League' },
+    { id: 5, name: 'Egyptian', description: 'Egyptian General Authority' },
+]
 
 export default function SettingsPage() {
     const { location, requestLocation } = useLocation()
     const { darkMode, toggleDarkMode } = useTheme()
+    const { settings, updateSetting } = useSettings()
+    const [showMethodPicker, setShowMethodPicker] = useState(false)
+
+    const currentMethod = CALCULATION_METHODS.find(m => m.id === settings.prayerMethod) || CALCULATION_METHODS[0]
 
     return (
         <div className="space-y-6 animate-fade-in">
@@ -23,6 +37,57 @@ export default function SettingsPage() {
                     <p className="text-sm text-slate-400">Konfigurasi aplikasi</p>
                 </div>
             </div>
+
+            {/* Prayer Method Section */}
+            <section>
+                <div className="flex items-center gap-2 mb-3">
+                    <Clock size={18} className="text-emerald-400" />
+                    <h2 className="font-semibold text-white">Metode Perhitungan</h2>
+                </div>
+
+                <div className="bg-slate-800 rounded-xl overflow-hidden">
+                    <button
+                        onClick={() => setShowMethodPicker(!showMethodPicker)}
+                        className="w-full p-4 flex items-center justify-between hover:bg-slate-700/50 transition-colors"
+                    >
+                        <div className="text-left">
+                            <p className="font-medium text-white">{currentMethod.name}</p>
+                            <p className="text-sm text-slate-400">{currentMethod.description}</p>
+                        </div>
+                        <ChevronDown
+                            size={20}
+                            className={`text-slate-400 transition-transform ${showMethodPicker ? 'rotate-180' : ''}`}
+                        />
+                    </button>
+
+                    {showMethodPicker && (
+                        <div className="border-t border-slate-700 divide-y divide-slate-700">
+                            {CALCULATION_METHODS.map((method) => (
+                                <button
+                                    key={method.id}
+                                    onClick={() => {
+                                        updateSetting('prayerMethod', method.id)
+                                        setShowMethodPicker(false)
+                                    }}
+                                    className={`w-full p-4 flex items-center justify-between hover:bg-slate-700/50 transition-colors ${method.id === settings.prayerMethod ? 'bg-emerald-600/10' : ''
+                                        }`}
+                                >
+                                    <div className="text-left">
+                                        <span className="font-medium text-white">{method.name}</span>
+                                        <p className="text-xs text-slate-400">{method.description}</p>
+                                    </div>
+                                    {method.id === settings.prayerMethod && (
+                                        <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                <p className="text-xs text-slate-500 mt-2">
+                    Metode ini akan digunakan untuk menghitung waktu sholat
+                </p>
+            </section>
 
             {/* Notification Settings Section */}
             <section>
@@ -122,3 +187,4 @@ export default function SettingsPage() {
         </div>
     )
 }
+
