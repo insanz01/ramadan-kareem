@@ -52,8 +52,8 @@ export default function NotificationSettings() {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${settings.enabled
-                                ? 'bg-emerald-600/20 text-emerald-400'
-                                : 'bg-slate-700 text-slate-400'
+                            ? 'bg-emerald-600/20 text-emerald-400'
+                            : 'bg-slate-700 text-slate-400'
                             }`}>
                             {settings.enabled ? <Bell size={20} /> : <BellOff size={20} />}
                         </div>
@@ -103,8 +103,8 @@ export default function NotificationSettings() {
                                     key={option.value}
                                     onClick={() => updateSettings({ reminderMinutes: option.value })}
                                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${settings.reminderMinutes === option.value
-                                            ? 'bg-emerald-600 text-white'
-                                            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                                        ? 'bg-emerald-600 text-white'
+                                        : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
                                         }`}
                                 >
                                     {option.label}
@@ -133,8 +133,8 @@ export default function NotificationSettings() {
                                     </div>
 
                                     <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors ${settings.prayers[prayer.key]
-                                            ? 'bg-emerald-600 border-emerald-600'
-                                            : 'border-slate-500'
+                                        ? 'bg-emerald-600 border-emerald-600'
+                                        : 'border-slate-500'
                                         }`}>
                                         {settings.prayers[prayer.key] && (
                                             <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
@@ -147,21 +147,54 @@ export default function NotificationSettings() {
                         </div>
                     </div>
 
-                    {/* Sound Settings (Placeholder) */}
-                    <div className="bg-slate-800 rounded-xl p-4 opacity-60">
+                    {/* Sound Settings */}
+                    <div className="bg-slate-800 rounded-xl p-4">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-slate-700 flex items-center justify-center text-slate-400">
+                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${settings.sound
+                                        ? 'bg-emerald-600/20 text-emerald-400'
+                                        : 'bg-slate-700 text-slate-400'
+                                    }`}>
                                     {settings.sound ? <Volume2 size={20} /> : <VolumeX size={20} />}
                                 </div>
                                 <div>
                                     <h3 className="font-medium text-white">Suara Adzan</h3>
-                                    <p className="text-xs text-slate-400">Segera hadir</p>
+                                    <p className="text-xs text-slate-400">
+                                        {settings.sound ? 'Aktif' : 'Nonaktif'}
+                                    </p>
                                 </div>
                             </div>
 
-                            <span className="text-xs text-slate-500 bg-slate-700 px-2 py-1 rounded">Coming Soon</span>
+                            <button
+                                onClick={() => updateSettings({ sound: !settings.sound })}
+                                className={`relative w-12 h-6 rounded-full transition-colors ${settings.sound ? 'bg-emerald-600' : 'bg-slate-600'
+                                    }`}
+                            >
+                                <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${settings.sound ? 'left-7' : 'left-1'
+                                    }`} />
+                            </button>
                         </div>
+
+                        {settings.sound && (
+                            <div className="mt-4 pt-4 border-t border-slate-700">
+                                <div className="flex items-center justify-between mb-2">
+                                    <span className="text-sm text-slate-300">Volume</span>
+                                    <span className="text-sm text-slate-400">{Math.round(settings.soundVolume * 100)}%</span>
+                                </div>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="1"
+                                    step="0.1"
+                                    value={settings.soundVolume}
+                                    onChange={(e) => updateSettings({ soundVolume: parseFloat(e.target.value) })}
+                                    className="w-full h-2 bg-slate-700 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-emerald-500 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer"
+                                />
+                                <p className="text-xs text-slate-500 mt-2">
+                                    Subuh menggunakan adzan khusus, waktu lain menggunakan adzan reguler
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </>
             )}

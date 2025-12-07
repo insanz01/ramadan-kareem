@@ -140,15 +140,22 @@ export function NotificationProvider({ children }) {
         })
     }, [settings, prayerTimes, permission, showNotification])
 
-    // Placeholder for adzan sound
+    // Play adzan sound based on prayer time
     const playAdzanSound = (prayerKey) => {
-        // Will be implemented when adzan audio is provided
-        console.log(`Playing adzan for ${prayerKey}`)
+        // Use different adzan for Subuh (Fajr) and other prayers
+        const audioSrc = prayerKey === 'Fajr'
+            ? '/sounds/adzan-subuh.mp3'
+            : '/sounds/adzan.mp3'
 
-        // Example implementation:
-        // const audio = new Audio('/sounds/adzan.mp3')
-        // audio.volume = settings.soundVolume
-        // audio.play()
+        try {
+            const audio = new Audio(audioSrc)
+            audio.volume = settings.soundVolume
+            audio.play().catch(err => {
+                console.error('Error playing adzan:', err)
+            })
+        } catch (error) {
+            console.error('Error creating audio:', error)
+        }
     }
 
     // Start/stop checking prayer times
