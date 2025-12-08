@@ -12,7 +12,8 @@ export default function KiblatPage() {
         isSupported,
         permissionGranted,
         requestPermission,
-        error: qiblaError
+        error: qiblaError,
+        accuracy
     } = useQibla(location?.latitude, location?.longitude)
 
     const [isCalibrating, setIsCalibrating] = useState(false)
@@ -121,6 +122,24 @@ export default function KiblatPage() {
                         {qiblaDirection ? `${Math.round(qiblaDirection)}°` : '--°'}
                     </p>
                     <p className="text-sm text-slate-400 mt-1">dari arah Utara</p>
+
+                    {/* Compass Heading & Accuracy */}
+                    {permissionGranted && (
+                        <div className="mt-3 flex items-center justify-center gap-4 text-xs">
+                            <span className="text-slate-500">
+                                Kompas: <span className="text-emerald-400 font-mono">{Math.round(compassHeading)}°</span>
+                            </span>
+                            {accuracy !== null && (
+                                <span className={`px-2 py-0.5 rounded ${accuracy < 10 ? 'bg-emerald-500/20 text-emerald-400' :
+                                        accuracy < 30 ? 'bg-yellow-500/20 text-yellow-400' :
+                                            'bg-red-500/20 text-red-400'
+                                    }`}>
+                                    {accuracy < 10 ? 'Akurasi Tinggi' :
+                                        accuracy < 30 ? 'Akurasi Sedang' : 'Perlu Kalibrasi'}
+                                </span>
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
 
